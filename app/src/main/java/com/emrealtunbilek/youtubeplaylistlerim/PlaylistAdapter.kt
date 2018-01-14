@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.tek_satir_playlist.view.*
 
 /**
@@ -44,15 +46,13 @@ class PlaylistAdapter(tumOynatmaListeleri:List<PlaylistData.Items>?) : RecyclerV
         var tekSatirPlaylist=itemView as CardView
 
         var playListTitle=tekSatirPlaylist.tvListeBaslik
-        var playListImage = tekSatirPlaylist.imgListeResim
+        var playListResim = tekSatirPlaylist.circleResim
 
 
 
         fun setData(oanOlusturulanSatir: PlaylistData.Items?, pos:Int){
-
             playListTitle.text=oanOlusturulanSatir?.snippet?.title
-
-
+            Picasso.with(tekSatirPlaylist.context).load(oanOlusturulanSatir?.snippet?.thumbnails?.high?.url).into(playListResim)
         }
 
     }
