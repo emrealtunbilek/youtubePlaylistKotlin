@@ -2,7 +2,9 @@ package com.emrealtunbilek.youtubeplaylistlerim
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +38,11 @@ class MainActivity : AppCompatActivity() {
                 oynatmaListeleri=gelenVeri?.items
 
                 myAdapter= PlaylistAdapter(oynatmaListeleri)
+                recyclerviewPlaylist.adapter=myAdapter
+
+                var myLayoutManager=LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)
+                recyclerviewPlaylist.layoutManager=myLayoutManager
+
 
                 supportActionBar?.setSubtitle("Toplam Liste :"+oynatmaListeleri?.size)
 

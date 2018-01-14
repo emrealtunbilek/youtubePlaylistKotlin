@@ -2,10 +2,6 @@ package com.emrealtunbilek.youtubeplaylistlerim
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Created by Emre on 14.01.2018.
- */
-
 class PlaylistData {
 
 
