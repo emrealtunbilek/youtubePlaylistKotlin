@@ -7,10 +7,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+
 class MainActivity : AppCompatActivity() {
 
-    val API_KEY = "AIzaSyDiVMt7qbRTgQDQdcblvwDCNt7xJJTiwlU"
+    val API_KEY = "AIzaSyA0v9F6KnUTL9ZM_bXYEOfNVyh6ZImgr3E"
     val CHANNEL_ID="UClpEUtFu_dXbrUJ6kc3QtlA"
+    var gelenVeri:PlaylistData? = null
+    var oynatmaListeleri:List<PlaylistData.Items> ?= null
+
+    var myAdapter:PlaylistAdapter? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +31,17 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<PlaylistData>?, response: Response<PlaylistData>?) {
                 Log.e("BASARILI", ""+call?.request()?.url()?.toString())
-                var gelenData=response?.body()
 
-                for(i in 0..response?.body()?.items?.size!!-1)
-                Log.e("BASARILI", ""+response?.body()?.items?.get(i)?.snippet?.title?.toString())
+                gelenVeri=response?.body()
+                oynatmaListeleri=gelenVeri?.items
+
+                myAdapter= PlaylistAdapter(oynatmaListeleri)
+
+                supportActionBar?.setSubtitle("Toplam Liste :"+oynatmaListeleri?.size)
+
+                Log.e("BASARILI","TOPLAM LİSTE SAYISI"+gelenVeri?.pageInfo?.totalResults)
+
+
             }
 
             override fun onFailure(call: Call<PlaylistData>?, t: Throwable?) {
@@ -40,5 +54,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+
+
     }
+
 }
